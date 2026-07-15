@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClearVision </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="topbar">
+    <div class="logo">
+        <div class="logo-icon"><i class="fas fa-camera-retro"></i></div>
+        <div>
+            <div class="logo-name">Clear<span>Vision</span></div>
+            <div class="logo-tag">Image Enhancement System</div>
+        </div>
+    </div>
+
+</header>
+
+<main class="main-wrap">
+
+    <aside class="left-panel">
+
+        <div class="upload-zone">
+            <div class="panel-label"><i class="fas fa-cloud-upload-alt"></i> Source Image</div>
+            <div class="upload-box" id="uploadBox">
+                <div class="upload-icon"><i class="fas fa-file-import"></i></div>
+                <div class="upload-title">Drop image here</div>
+                <div class="upload-sub">JPG · PNG · WebP · max 10 MB</div>
+                <button class="upload-btn" type="button">
+                    <i class="fas fa-folder-open"></i> Browse files
+                </button>
+                <input type="file" id="fileInput" accept="image/*">
+            </div>
+        </div>
+
+        <div class="strength-zone">
+            <div class="panel-label"><i class="fas fa-sliders-h"></i> Enhancement Strength</div>
+            <div class="strength-btns">
+                <button class="s-btn active" data-factor="1" type="button">Light</button>
+                <button class="s-btn"        data-factor="2" type="button">Medium</button>
+                <button class="s-btn gold"   data-factor="3" type="button">⚡ Max</button>
+            </div>
+        </div>
+
+        <div class="algo-zone">
+            <div class="algo-zone-header">
+                <div class="algo-zone-title"><i class="fas fa-flask"></i> Pipeline</div>
+                <div class="algo-badge" id="algoBadge">0 selected</div>
+            </div>
+
+            <div class="algo-list">
+
+            <label class="algo-row">
+                <span class="algo-stage-icon"><i class="fas fa-wind"></i></span>
+                <input type="checkbox" name="algo" value="Bilateral" checked>
+                <span class="toggle"></span>
+                <span class="algo-info">
+                    <span class="algo-name">Bilateral Filter</span>
+                    <span class="algo-desc"><span class="algo-stage-tag">Denoising</span> · Edge-preserving noise reduction</span>
+                </span>
+            </label>
+
+            <label class="algo-row">
+                <span class="algo-stage-icon"><i class="fas fa-adjust"></i></span>
+                <input type="checkbox" name="algo" value="CLAHE" checked>
+                <span class="toggle"></span>
+                <span class="algo-info">
+                    <span class="algo-name">CLAHE</span>
+                    <span class="algo-desc"><span class="algo-stage-tag">Contrast</span> · Adaptive local contrast</span>
+                </span>
+            </label>
+
+            <label class="algo-row">
+                <span class="algo-stage-icon"><i class="fas fa-crosshairs"></i></span>
+                <input type="checkbox" name="algo" value="USM" checked>
+                <span class="toggle"></span>
+                <span class="algo-info">
+                    <span class="algo-name">Unsharp Masking</span>
+                    <span class="algo-desc"><span class="algo-stage-tag">Sharpening</span> · Detail &amp; edge amplification</span>
+                </span>
+            </label>
+
+            <label class="algo-row">
+                <span class="algo-stage-icon"><i class="fas fa-palette"></i></span>
+                <input type="checkbox" name="algo" value="Saturation" checked>
+                <span class="toggle"></span>
+                <span class="algo-info">
+                    <span class="algo-name">Saturation Boost</span>
+                    <span class="algo-desc"><span class="algo-stage-tag">Colour</span> · HSL-based enhancement</span>
+                </span>
+            </label>
+            </div>
+
+            </div>
+        </div>
+    </aside>
+
+    <div class="right-panel">
+
+        <div class="preview-card" style="position:relative">
+
+            <div class="loader-overlay" id="loaderOverlay">
+                <div class="loader-ring-wrap">
+                    <div class="lring"></div>
+                    <div class="lring"></div>
+                    <div class="lring"></div>
+                </div>
+                <div class="loader-step" id="loaderStep">Processing…</div>
+                <div class="loader-sub"  id="loaderSub"></div>
+            </div>
+
+            <div class="preview-card-header">
+                <div class="preview-card-title"><i class="fas fa-eye"></i> Preview</div>
+                <div style="display:flex;gap:8px;align-items:center">
+                    <span class="size-tag">Original <span id="originalSize">--</span></span>
+                    <span class="size-tag" id="enhSizeTag" style="display:none">Enhanced <span id="enhancedSize">--</span></span>
+                </div>
+            </div>
+
+            <div class="side-cards" id="sideBySide">
+
+                <div class="img-slot">
+                    <div class="img-slot-label">Original</div>
+                    <div class="img-wrap" id="origWrap">
+                        <img id="originalImage" style="display:none" alt="Original">
+                        <div class="img-placeholder" id="origPlaceholder">
+                            <i class="fas fa-image"></i>
+                            Upload an image to begin
+                        </div>
+                    </div>
+                </div>
+
+                <div class="img-slot enhanced">
+                    <div class="img-slot-label">Enhanced</div>
+                    <div class="img-wrap" id="enhWrap">
+                        <img id="enhancedImage" style="display:none" alt="Enhanced">
+                        <div class="img-placeholder" id="enhPlaceholder">
+                            <i class="fas fa-magic"></i>
+                            Enhanced result will appear here
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="compare-section" id="compareSection">
+                <div class="compare-container" id="compareContainer">
+                    <img id="compareBottom" class="compare-img-bottom" alt="Enhanced">
+                    <div class="compare-clip" id="compareClip">
+                        <img id="compareTop" alt="Original">
+                    </div>
+                    <div class="compare-divider" id="compareDivider">
+                        <div class="compare-handle">
+                            <i class="fas fa-chevron-left"></i>
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                    </div>
+                    <span class="compare-label compare-label-left">Original</span>
+                    <span class="compare-label compare-label-right enhanced-label">Enhanced</span>
+                </div>
+            </div>
+
+            <div class="compare-toggle-bar" id="toggleBar">
+                <button class="view-btn active" id="btnSideBySide" type="button">
+                    <i class="fas fa-th-large"></i> Side by Side
+                </button>
+                <button class="view-btn" id="btnCompare" type="button">
+                    <i class="fas fa-arrows-alt-h"></i> Compare Slider
+                </button>
+            </div>
+
+            <div class="stats-strip">
+                <div class="stat-block">
+                    <div class="stat-val" id="statLevel">Subtle</div>
+                    <div class="stat-key">Strength Applied</div>
+                    <div class="stat-bar"><div class="stat-bar-fill" id="barLevel" style="width:33%"></div></div>
+                </div>
+                <div class="stat-block">
+                    <div class="stat-val" id="statAlgos">--</div>
+                    <div class="stat-key">Algorithms Used</div>
+                    <div class="stat-bar"><div class="stat-bar-fill" id="barAlgos" style="width:0%"></div></div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="msg-bar" id="msgBar"></div>
+
+        <div class="action-card">
+            <button class="action-btn btn-enhance" id="enhanceBtn" type="button" disabled>
+                <i class="fas fa-magic"></i> Enhance Image
+            </button>
+            <button class="action-btn btn-download" id="downloadBtn" type="button" disabled>
+                <i class="fas fa-download"></i> Download
+            </button>
+        </div>
+
+    </div>
+</main>
+
+
+
+<script src="script.js"></script>
+</body>
+</html>
