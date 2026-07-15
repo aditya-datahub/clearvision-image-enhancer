@@ -46,36 +46,31 @@ This project was built as our **Final Year B.Tech Computer Science Engineering g
 
 When you click **Enhance Image**, the uploaded photo is drawn onto a hidden canvas, and each *enabled* algorithm is applied in a fixed order — each stage builds on the cleaner/better output of the one before it:
 
-```
-Original Image
-      │
-      ▼
-┌─────────────────┐
-│ 1. Bilateral      │  Removes noise/grain, but preserves edges
-│    Filter         │  (Denoising)
-└─────────────────┘
-      │
-      ▼
-┌─────────────────┐
-│ 2. CLAHE          │  Improves local contrast in shadows/highlights
-│                    │  (Contrast)
-└─────────────────┘
-      │
-      ▼
-┌─────────────────┐
-│ 3. Unsharp        │  Sharpens edges & fine details
-│    Masking         │  (Sharpening)
-└─────────────────┘
-      │
-      ▼
-┌─────────────────┐
-│ 4. Saturation      │  Makes colours richer & more vivid
-│    Boost           │  (Colour)
-└─────────────────┘
-      │
-      ▼
- Enhanced Image
-```
+**Original Image**
+
+⬇️
+
+**1. Bilateral Filter** — *(Denoising)*
+Removes noise/grain, but preserves edges
+
+⬇️
+
+**2. CLAHE** — *(Contrast)*
+Improves local contrast in shadows/highlights
+
+⬇️
+
+**3. Unsharp Masking** — *(Sharpening)*
+Sharpens edges & fine details
+
+⬇️
+
+**4. Saturation Boost** — *(Colour)*
+Makes colours richer & more vivid
+
+⬇️
+
+**Enhanced Image**
 
 | Stage | Algorithm | Fixes | Key Parameter |
 |-------|-----------|-------|----------------|
