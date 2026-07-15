@@ -1,8 +1,7 @@
 <div align="center">
 
 # 📸 ClearVision
-
-### Browser-Based Image Enhancement Tool
+### Image Quality Enhancement System
 
 *A Final Year B.Tech (CSE) Group Project*
 
@@ -183,7 +182,7 @@ This project was built collaboratively by a team of four as our **Final Year B.T
 | Aditya Sharma | Algorithm Implementation |
 | Akash Verma | Frontend / Canvas Pipeline |
 | Tarun Masanta | UI/UX Design |
-| Souvik Dutta Banik | Testing & Documentation |
+| Shouvik Dutta Banik | Testing & Documentation |
 
 ---
 
