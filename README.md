@@ -1,7 +1,6 @@
 <div align="center">
 
-# 📸 ClearVision
-### Image Quality Enhancement System
+# 📸 ClearVision Image Quality Enhancement System
 
 *A Final Year B.Tech (CSE) Group Project*
 
@@ -100,12 +99,16 @@ clearvision-image-enhancer/
 │                            # slider, download functionality
 │
 ├── docs/
-│   └── PROJECT_NOTES.md      # Detailed explanation of every algorithm
-│                            # used in the pipeline
+│   ├── PROJECT_NOTES.md      # Detailed explanation of every algorithm
+│   │                         # used in the pipeline
+│   ├── FINAL_PROJECT_REPORT_2026_JULY.pdf   # Complete B.Tech project report
+│   └── Clearvision_Image_Quality_PRESENTATION.pptx  # Project presentation slides
 │
 ├── LICENSE                  # MIT License
 └── README.md                 # You are here 📍
 ```
+
+📄 **Full Project Report (PDF)** and 🎞️ **Presentation (PPTX)** are available in the [`docs/`](docs) folder for anyone who wants the complete academic write-up — literature review, algorithm derivations, results, and future scope.
 
 **For newcomers:** if you want to understand the codebase, read files in this order:
 1. `index.html` — see what UI elements exist
